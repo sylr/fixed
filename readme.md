@@ -2,22 +2,27 @@
 
 A fixed place numeric library designed for performance.
 
-All numbers have a fixed **6** decimal places, and the maximum permitted value is +- 999999999999,
-or just under 1000 billion.
+All numbers have a fixed **6** decimal places, and the maximum permitted value
+is +- 999_999_999_999, or just under 1000 billion.
 
-The library is safe for concurrent use. It has built-in support for binary and json marshalling.
+The library is safe for concurrent use. It has built-in support for binary and
+json marshalling.
 
-It is ideally suited for high performance trading financial systems. All common math operations are completed with 0 allocs.
+It is ideally suited for high performance trading financial systems. All common
+math operations are completed with 0 allocs.
 
 **Design Goals**
 
 Primarily developed to improve performance in [go-trader](https://github.com/robaho/go-trader).
-Using Fixed rather than decimal.Decimal improves the performance by over 20%, and a lot less GC activity as well.
-You can review these changes under the 'fixed' branch.
+Using Fixed rather than decimal.Decimal improves the performance by over 20%,
+and a lot less GC activity as well. You can review these changes under the
+'fixed' branch.
 
-If you review the go-trader code, you will quickly see that I use dot imports for the fixed and common packages. Since this
-is a "business/user" app and not systems code, this provides 2 major benefits: less verbose code, and I can easily change the
-implementation of Fixed without changing lots of LOC - just the import statement, and some of the wrapper methods in common.
+If you review the go-trader code, you will quickly see that I use dot imports
+for the fixed and common packages. Since this is a "business/user" app and not
+systems code, this provides 2 major benefits: less verbose code, and I can
+easily change the implementation of Fixed without changing lots of LOC - just
+the import statement, and some of the wrapper methods in common.
 
 The fixed.Fixed API uses NaN for reporting errors in the common case, since often code is chained like:
 ```
@@ -25,7 +30,6 @@ The fixed.Fixed API uses NaN for reporting errors in the common case, since ofte
 ```
 and this would be a huge pain with error handling. Since all operations involving a NaN result in a NaN,
  any errors quickly surface anyway.
-
 
 **Performance**
 
@@ -64,5 +68,5 @@ The "decimal" above is the common [shopspring decimal](https://github.com/shopsp
 **Compatibility with SQL drivers**
 
 By default `Fixed` implements `decomposer.Decimal` interface for database
-drivers that support it. To use `sql.Scanner` and `driver.Valuer`
-implementation flag `sql_scanner` must be specified on build.
+drivers that support it. To use `sql.Scanner` and `driver.Valuer` implementation
+flag `sql_scanner` must be specified on build.

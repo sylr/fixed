@@ -65,13 +65,14 @@ func TestNegative(t *testing.T) {
 }
 
 func TestParse(t *testing.T) {
-	_, err := Parse("123")
+	_, err := Parse("123_456.789")
 	if err != nil {
-		t.Fail()
+		t.Error(err)
 	}
+
 	_, err = Parse("abc")
 	if err == nil {
-		t.Fail()
+		t.Error("expected parse error")
 	}
 }
 

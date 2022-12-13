@@ -20,10 +20,10 @@ type Fixed struct {
 // the following constants can be changed to configure a different number of decimal places - these are
 // the only required changes. only 18 significant digits are supported due to NaN
 
-const nPlaces = 7
-const scale = int64(10 * 10 * 10 * 10 * 10 * 10 * 10)
-const zeros = "0000000"
-const MAX = float64(99999999999.9999999)
+const nPlaces = 6
+const scale = int64(1_000_000)
+const zeros = "000000"
+const MAX = float64(999_999_999_999)
 
 const nan = int64(1<<63 - 1)
 
@@ -154,7 +154,6 @@ func (f Fixed) IsZero() bool {
 //	-1 if f <  0
 //	 0 if f == 0 or NaN
 //	+1 if f >  0
-//
 func (f Fixed) Sign() int {
 	if f.IsNaN() {
 		return 0
@@ -323,7 +322,6 @@ func (f Fixed) String() string {
 
 // StringN converts a Fixed to a String with a specified number of decimal places, truncating as required
 func (f Fixed) StringN(decimals int) string {
-
 	s, point := f.tostr()
 
 	if point == -1 {

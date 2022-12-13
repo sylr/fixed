@@ -2,8 +2,8 @@
 
 A fixed place numeric library designed for performance.
 
-All numbers have a fixed 7 decimal places, and the maximum permitted value is +- 99999999999,
-or just under 100 billion.
+All numbers have a fixed **6** decimal places, and the maximum permitted value is +- 999999999999,
+or just under 1000 billion.
 
 The library is safe for concurrent use. It has built-in support for binary and json marshalling.
 
@@ -30,28 +30,33 @@ and this would be a huge pain with error handling. Since all operations involvin
 **Performance**
 
 <pre>
-BenchmarkAddFixed-2         	2000000000	         0.85 ns/op	       0 B/op	       0 allocs/op
-BenchmarkAddDecimal-2       	 3000000	       472 ns/op	     400 B/op	      10 allocs/op
-BenchmarkAddBigInt-2        	100000000	        18.8 ns/op	       0 B/op	       0 allocs/op
-BenchmarkAddBigFloat-2      	20000000	       109 ns/op	      48 B/op	       1 allocs/op
-BenchmarkMulFixed-2         	200000000	         6.14 ns/op	       0 B/op	       0 allocs/op
-BenchmarkMulDecimal-2       	20000000	        96.0 ns/op	      80 B/op	       2 allocs/op
-BenchmarkMulBigInt-2        	100000000	        22.2 ns/op	       0 B/op	       0 allocs/op
-BenchmarkMulBigFloat-2      	30000000	        50.9 ns/op	       0 B/op	       0 allocs/op
-BenchmarkDivFixed-2         	100000000	        19.8 ns/op	       0 B/op	       0 allocs/op
-BenchmarkDivDecimal-2       	 1000000	      1206 ns/op	     928 B/op	      22 allocs/op
-BenchmarkDivBigInt-2        	20000000	        67.6 ns/op	      48 B/op	       1 allocs/op
-BenchmarkDivBigFloat-2      	10000000	       148 ns/op	      64 B/op	       2 allocs/op
-BenchmarkCmpFixed-2         	2000000000	         0.28 ns/op	       0 B/op	       0 allocs/op
-BenchmarkCmpDecimal-2       	100000000	        10.8 ns/op	       0 B/op	       0 allocs/op
-BenchmarkCmpBigInt-2        	200000000	         8.10 ns/op	       0 B/op	       0 allocs/op
-BenchmarkCmpBigFloat-2      	200000000	         8.39 ns/op	       0 B/op	       0 allocs/op
-BenchmarkStringFixed-2      	20000000	        76.1 ns/op	      32 B/op	       1 allocs/op
-BenchmarkStringNFixed-2     	20000000	        72.9 ns/op	      32 B/op	       1 allocs/op
-BenchmarkStringDecimal-2    	 5000000	       328 ns/op	     144 B/op	       5 allocs/op
-BenchmarkStringBigInt-2     	10000000	       212 ns/op	      80 B/op	       3 allocs/op
-BenchmarkStringBigFloat-2   	 3000000	       568 ns/op	     272 B/op	       8 allocs/op
-BenchmarkWriteTo-2          	20000000	        69.9 ns/op	      27 B/op	       0 allocs/op
+goos: darwin
+goarch: arm64
+pkg: github.com/robaho/fixed
+BenchmarkAddFixed-10          	1000000000	         0.6231 ns/op	       0 B/op	       0 allocs/op
+BenchmarkAddDecimal-10        	28439079	        41.01 ns/op	      80 B/op	       2 allocs/op
+BenchmarkAddBigInt-10         	186084148	         6.444 ns/op	       0 B/op	       0 allocs/op
+BenchmarkAddBigFloat-10       	29718478	        39.50 ns/op	      48 B/op	       1 allocs/op
+BenchmarkMulFixed-10          	548802238	         2.180 ns/op	       0 B/op	       0 allocs/op
+BenchmarkMulDecimal-10        	27966894	        41.38 ns/op	      80 B/op	       2 allocs/op
+BenchmarkMulBigInt-10         	173213432	         6.921 ns/op	       0 B/op	       0 allocs/op
+BenchmarkMulBigFloat-10       	83455525	        14.31 ns/op	       0 B/op	       0 allocs/op
+BenchmarkDivFixed-10          	487855944	         2.459 ns/op	       0 B/op	       0 allocs/op
+BenchmarkDivDecimal-10        	 4430803	       270.7 ns/op	     392 B/op	      13 allocs/op
+BenchmarkDivBigInt-10         	52796953	        21.76 ns/op	       8 B/op	       1 allocs/op
+BenchmarkDivBigFloat-10       	23765239	        49.45 ns/op	      24 B/op	       2 allocs/op
+BenchmarkCmpFixed-10          	1000000000	         0.3121 ns/op	       0 B/op	       0 allocs/op
+BenchmarkCmpDecimal-10        	256577332	         4.681 ns/op	       0 B/op	       0 allocs/op
+BenchmarkCmpBigInt-10         	348158856	         3.436 ns/op	       0 B/op	       0 allocs/op
+BenchmarkCmpBigFloat-10       	383045502	         3.118 ns/op	       0 B/op	       0 allocs/op
+BenchmarkStringFixed-10       	35242720	        33.09 ns/op	      16 B/op	       1 allocs/op
+BenchmarkStringNFixed-10      	35731167	        32.77 ns/op	      16 B/op	       1 allocs/op
+BenchmarkStringDecimal-10     	10620631	       111.8 ns/op	      64 B/op	       5 allocs/op
+BenchmarkStringBigInt-10      	19592462	        60.31 ns/op	      24 B/op	       2 allocs/op
+BenchmarkStringBigFloat-10    	 5391572	       223.7 ns/op	     184 B/op	       8 allocs/op
+BenchmarkWriteTo-10           	70938927	        16.43 ns/op	      15 B/op	       0 allocs/op
+PASS
+ok  	github.com/robaho/fixed	29.001s
 </pre>
 
 The "decimal" above is the common [shopspring decimal](https://github.com/shopspring/decimal) library

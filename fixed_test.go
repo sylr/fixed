@@ -382,6 +382,32 @@ func TestMulDiv(t *testing.T) {
 
 }
 
+func TestMod(t *testing.T) {
+	f0 := NewS("1000")
+	f1 := NewS("10")
+
+	f2 := f0.Mod(f1)
+	if f2.String() != "0" {
+		t.Error("should be equal", f2.String(), "0")
+	}
+
+	f0 = NewS("1000")
+	f1 = NewS("3")
+
+	f2 = f0.Mod(f1)
+	if f2.String() != "1" {
+		t.Error("should be equal", f2.String(), "1")
+	}
+
+	f0 = NewS("1000")
+	f1 = NewS("3.1")
+
+	f2 = f0.Mod(f1)
+	if f2.String() != "1.8" {
+		t.Error("should be equal", f2.String(), "1.8")
+	}
+}
+
 func TestNegatives(t *testing.T) {
 	f0 := NewS("99")
 	f1 := NewS("100")

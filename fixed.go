@@ -243,6 +243,14 @@ func sign(fp int64) int64 {
 	return 1
 }
 
+// Mod returns the remainder of f divided by f0. If either operand is NaN, NaN is returned
+func (f Fixed) Mod(f0 Fixed) Fixed {
+	if f.IsNaN() || f0.IsNaN() {
+		return NaN
+	}
+	return NewF(math.Mod(f.Float(), f0.Float()))
+}
+
 // Round returns a rounded (half-up, away from zero) to n decimal places
 func (f Fixed) Round(n int) Fixed {
 	if f.IsNaN() {

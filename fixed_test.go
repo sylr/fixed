@@ -668,3 +668,25 @@ func TestJSON_NaN(t *testing.T) {
 		t.Error("did not decode NaN", j.F, f)
 	}
 }
+
+func TestClampMin(t *testing.T) {
+	f0 := NewS("1")
+	f1 := NewS("2")
+	if !f0.ClampMin(f1).Equal(f1) {
+		t.Error("f0.ClampMin(f1) should equal f1")
+	}
+	if !f1.ClampMin(f0).Equal(f1) {
+		t.Error("f1.ClampMin(f0) should equal f1")
+	}
+}
+
+func TestClampMax(t *testing.T) {
+	f0 := NewS("1")
+	f1 := NewS("2")
+	if !f0.ClampMax(f1).Equal(f0) {
+		t.Error("f0.ClampMax(f1) should equal f0")
+	}
+	if !f1.ClampMax(f0).Equal(f0) {
+		t.Error("f1.ClampMax(f0) should equal f0")
+	}
+}

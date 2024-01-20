@@ -302,6 +302,24 @@ func (f Fixed) LessThanOrEqual(f0 Fixed) bool {
 	return cmp == -1 || cmp == 0
 }
 
+// ClampMin returns f if f > f0, otherwise f0
+func (f Fixed) ClampMin(f0 Fixed) Fixed {
+	if f.GreaterThan(f0) {
+		return f
+	} else {
+		return f0
+	}
+}
+
+// ClampMax returns f if f < f0, otherwise f0
+func (f Fixed) ClampMax(f0 Fixed) Fixed {
+	if f.LessThan(f0) {
+		return f
+	} else {
+		return f0
+	}
+}
+
 // Cmp compares two Fixed. If f == f0, return 0. If f > f0, return 1. If f < f0, return -1. If both are NaN, return 0. If f is NaN, return 1. If f0 is NaN, return -1
 func (f Fixed) Cmp(f0 Fixed) int {
 	if f.IsNaN() && f0.IsNaN() {

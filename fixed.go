@@ -484,3 +484,19 @@ func (f Fixed) MarshalJSON() ([]byte, error) {
 	buffer := make([]byte, 24)
 	return itoa(buffer, f.fp), nil
 }
+
+// Min returns the smaller of f and f0.
+func Min(f, f0 Fixed) Fixed {
+	if f.Cmp(f0) == -1 {
+		return f
+	}
+	return f0
+}
+
+// Max returns the larger of f and f0.
+func Max(f, f0 Fixed) Fixed {
+	if f.Cmp(f0) == 1 {
+		return f
+	}
+	return f0
+}

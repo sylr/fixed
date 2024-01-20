@@ -669,6 +669,28 @@ func TestJSON_NaN(t *testing.T) {
 	}
 }
 
+func TestMin(t *testing.T) {
+	f0 := NewS("1")
+	f1 := NewS("2")
+	if !Min(f0, f1).Equal(f0) {
+		t.Error("Min(f0, f1) should equal f0")
+	}
+	if !Min(f1, f0).Equal(f0) {
+		t.Error("Min(f1, f0) should equal f0")
+	}
+}
+
+func TestMax(t *testing.T) {
+	f0 := NewS("1")
+	f1 := NewS("2")
+	if !Max(f0, f1).Equal(f1) {
+		t.Error("Max(f0, f1) should equal f0")
+	}
+	if !Max(f1, f0).Equal(f1) {
+		t.Error("Max(f1, f0) should equal f0")
+	}
+}
+
 func TestClampMin(t *testing.T) {
 	f0 := NewS("1")
 	f1 := NewS("2")

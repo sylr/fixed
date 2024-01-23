@@ -712,3 +712,27 @@ func TestClampMax(t *testing.T) {
 		t.Error("f1.ClampMax(f0) should equal f0")
 	}
 }
+
+func TestDecimals(t *testing.T) {
+	if d := NewF(1).Decimals(); d != 0 {
+		t.Errorf("should be 0 got %d", d)
+	}
+	if d := NewF(1.2).Decimals(); d != 1 {
+		t.Errorf("should be 1, got %d", d)
+	}
+	if d := NewF(1.03).Decimals(); d != 2 {
+		t.Errorf("should be 2, got %d", d)
+	}
+	if d := NewF(1.004).Decimals(); d != 3 {
+		t.Errorf("should be 3, got %d", d)
+	}
+	if d := NewF(1.0075).Decimals(); d != 4 {
+		t.Errorf("should be 4, got %d", d)
+	}
+	if d := NewF(1.00406).Decimals(); d != 5 {
+		t.Errorf("should be 5, got %d", d)
+	}
+	if d := NewF(1.010007).Decimals(); d != 6 {
+		t.Errorf("should be 6, got %d", d)
+	}
+}

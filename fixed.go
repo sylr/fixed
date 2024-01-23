@@ -161,6 +161,28 @@ func (f Fixed) Sign() int {
 	return f.Cmp(ZERO)
 }
 
+// Decimals returns the number of decimal places in the Fixed.
+func (f Fixed) Decimals() int {
+	switch {
+	case f.IsNaN() || f.IsZero():
+		return 0
+	case f.fp%1000000 == 0:
+		return 0
+	case f.fp%100000 == 0:
+		return 1
+	case f.fp%10000 == 0:
+		return 2
+	case f.fp%1000 == 0:
+		return 3
+	case f.fp%100 == 0:
+		return 4
+	case f.fp%10 == 0:
+		return 5
+	default:
+		return 6
+	}
+}
+
 // Float converts the Fixed to a float64
 func (f Fixed) Float() float64 {
 	if f.IsNaN() {

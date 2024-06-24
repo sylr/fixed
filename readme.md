@@ -2,6 +2,8 @@
 
 A fixed place numeric library designed for performance.
 
+The c++ version is available [here](https://github.com/robaho/cpp_fixed).
+
 All numbers have a fixed **6** decimal places, and the maximum permitted value
 is +- 999_999_999_999, or just under 1000 billion.
 

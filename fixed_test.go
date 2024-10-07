@@ -586,7 +586,10 @@ func TestEncodeDecode(t *testing.T) {
 
 	f := NewS("12345.12345")
 
-	f.WriteTo(b)
+	err := f.WriteTo(b)
+	if err != nil {
+		t.Error(err)
+	}
 
 	f0, err := ReadFrom(b)
 	if err != nil {
@@ -602,7 +605,10 @@ func TestEncodeDecode(t *testing.T) {
 		t.Error(err)
 	}
 	f1 := NewF(0)
-	f1.UnmarshalBinary(data)
+	err = f1.UnmarshalBinary(data)
+	if err != nil {
+		t.Error(err)
+	}
 
 	if !f.Equal(f1) {
 		t.Error("don't match", f, f0)

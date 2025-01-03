@@ -396,7 +396,6 @@ func TestMulDiv(t *testing.T) {
 		t.Error("should be equal", f2.String(), "-0.0000001")
 	}
 
-
 }
 
 func TestMod(t *testing.T) {

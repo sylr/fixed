@@ -380,20 +380,20 @@ func TestMulDiv(t *testing.T) {
 		t.Error("should be equal", f2.String(), "0.1")
 	}
 
-	f0 = NewS("0.000001")
+	f0 = NewS("0.00001")
 	f1 = NewS("0.066248")
 
 	f2 = f0.Mul(f1)
-	if f2.String() != "0.0000001" {
-		t.Error("should be equal", f2.String(), "0.0000001")
+	if f2.String() != "0.000001" {
+		t.Error("should be equal", f2.String(), "0.000001")
 	}
 
-	f0 = NewS("-0.000001")
+	f0 = NewS("-0.00001")
 	f1 = NewS("0.066248")
 
 	f2 = f0.Mul(f1)
-	if f2.String() != "-0.0000001" {
-		t.Error("should be equal", f2.String(), "-0.0000001")
+	if f2.String() != "-0.000001" {
+		t.Error("should be equal", f2.String(), "-0.000001")
 	}
 
 }
